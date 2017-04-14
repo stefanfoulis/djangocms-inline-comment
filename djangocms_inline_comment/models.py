@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db import models
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
@@ -20,6 +21,7 @@ def _get_html_field_class():
 
 class InlineComment(CMSPlugin):
     body = _get_html_field_class()(_("Comment"), null=True, blank=True)
+    show_contents = models.BooleanField(_("Show Contents"), default=False)
 
     def get_short_description(self):
         if not self.body:
